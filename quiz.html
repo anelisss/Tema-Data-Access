@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz JSON</title>
+</head>
+
+<body>
+
+    <script>
+        //read and format json file
+        let promise = fetch('quiz.json').then(function (response) {
+            if (!response.ok) {
+                throw Error("Error while reading this file.");
+            }
+            return response.json();
+
+            var data = JSON.parse(json);
+
+        }).then(function (data) {
+
+            document.body.innerHTML += '<h2>' + data.quiz.q1.question + '</h2>';
+            for (let i = 0; i < data.quiz.q1.options.length; i++) {
+                document.body.innerHTML += '<input type="radio"' + '<ul>' + data.quiz.q1.options[i] + '<br>' + '</ul>';
+            }
+
+            document.body.innerHTML += '<h2>' + data.quiz.q2.question + '</h2>';
+            for (let i = 0; i < data.quiz.q2.options.length; i++) {
+                document.body.innerHTML += '<input type="radio"' + '<ul>' + data.quiz.q2.options[i] + '<br>' + '</ul>';
+            }
+
+            document.body.innerHTML += '<h2>' + data.quiz.q3.question + '</h2>';
+            for (let i = 0; i < data.quiz.q3.options.length; i++) {
+                document.body.innerHTML += '<input type="radio"' + '<ul>' + data.quiz.q3.options[i] + '<br>' + '</ul>';
+            }
+
+            document.body.innerHTML += '<h2>' + data.quiz.q4.question + '</h2>';
+            for (let i = 0; i < data.quiz.q4.options.length; i++) {
+                document.body.innerHTML += '<input type="radio"' + '<ul>' + data.quiz.q4.options[i] + '<br>' + '</ul>';
+            }
+        }).catch(function (err) {
+            console.log('Error: ' + err.message);
+        });
+
+        //local storage
+
+        localStorage.setItem('answer1', 'Houston Rocket');
+        localStorage.setItem('answer2', 'Hindi');
+        localStorage.setItem('answer3', 'Berlin');
+        localStorage.setItem('answer4', 'Pablo Picasso');
+
+        var answer1 = localStorage.answer1;
+        var answer2 = localStorage.answer2;
+        var answer3 = localStorage.answer3;
+        var answer4 = localStorage.answer4;
+
+        // var answers = { 'answer1': 'Houston Rocket', 'answer2': 'Hindi', 'answer3': 'Berlin', 'answer4': 'Pablo Picasso'};
+
+        // localStorage.setItem('answers', JSON.stringify(answers));
+
+        // var getAnswers = localStorage.getItem('answers');
+
+        // console.log('getAnswers', JSON.parse(getAnswers));
+
+    </script>
+
+</body>
+
+</html>
